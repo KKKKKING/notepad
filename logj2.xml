@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status=debug 可以查看log4j的装配过程 off -->
+<configuration status="off" monitorInterval="1800">
+	<properties>
+		<property name="LOG_PATH">/data/logs/app/</property>
+		<!-- -->
+		<property name="APP_NAME">ems</property>
+		<!-- 应用日志 -->
+		<property name="LOG_NAME">application</property>
+		<!-- 全局日志 -->
+		<property name="LOG_SYS">system</property>
+	</properties>
+	<appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss} %5p [%t] %c{1.}:%L] %m%n" />
+		</Console>
+
+	</appenders>
+	<loggers>
+		<!-- other framework -->
+		<logger name="org.springframework" level="INFO" />
+		<logger name="org.mybatis" level="INFO"  />
+		<logger name="com.ctrip" level="WARN" />
+		<logger name="org.quartz" level="WARN" />
+		<root level="TRACE">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="sys" />
+		</root>
+	</loggers>
+</configuration>
